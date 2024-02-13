@@ -12,32 +12,6 @@ class Decoder() extends Module {
     })
 
 
+    
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-Decoder:
-    //have to set default
-    io.output := 0.U
-
-    switch(io.input) {
-        is (0.U) { io.output := 1.U}
-        is (1.U) { io.output := 2.U}
-        is (2.U) { io.output := 4.U}
-        is (3.U) { io.output := 8.U}
-    }
-
- */

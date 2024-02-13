@@ -11,45 +11,22 @@ class Encoder extends Module {
         val output = Output(UInt(2.W))
     })
 
+
+    
 }
 
 
+//TODO:
+//Below is a module that uses the built in chisel method that creates a priority encoded output based on its input.
+//To complete this assignment fill in the test cases and answer the questions in EncoderTest.scala
 
-//Just an example
 class PriorityEncoderExample extends Module {
     val io = IO(new Bundle {
         val input = Input(UInt(4.W))
         val output = Output(UInt(4.W))
     })
 
-    // Implementing the priority encoder with the built in module
+    // Implementing the priority encoder with the built in chisel method
     io.output := PriorityEncoder(io.input)
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-Encoder:
-    // Implementing the one-hot encoder using built in module
-    io.output := OHToUInt(io.input) //this can handle any width by varying input 
-
-    //have to set default
-    io.output := "b00".U
-    switch(io.input) {
-        is ("b0001".U) { io.output := "b00".U} //or 0.U
-        is ("b0010".U) { io.output := "b01".U} //   1.U
-        is ("b0100".U) { io.output := "b10".U} //   2.U
-        is ("b1000".U) { io.output := "b11".U} //   3.U
-    }
- */

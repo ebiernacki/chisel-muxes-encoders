@@ -1,7 +1,4 @@
 # Chisel Muxes and Encoders Repository
-ADD NOTE ABOUT Switch statements
-
-***
 
 This assignment has 4 modules for you to complete.
 
@@ -10,6 +7,7 @@ This assignment has 4 modules for you to complete.
 - DeMux
     
 - Encoder
+    - There is also test cases to complete in EncoderTest.scala
     
 - Decoder
    

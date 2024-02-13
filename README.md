@@ -1,4 +1,4 @@
-# Chisel Adders Repository
+# Chisel Muxes and Encoders Repository
 ADD NOTE ABOUT Switch statements
 
 ***

@@ -13,36 +13,7 @@ class deMux1to2(width: Int) extends Module { //1to2
         val d2         = Output(UInt(width.W))
     })
 
-    // val notSel = ~io.sel
-
-    // val vectd1 = VecInit(Seq.fill(width)(0.U(1.W)))
-    // val vectd2 = VecInit(Seq.fill(width)(0.U(1.W)))
-
-    // for(i <- 0 until width){
-    //     vectd1(i) := notSel & io.in(i)
-    //     vectd2(i) := io.sel & io.in(i)
-    // }
-
-    // io.d1 := vectd1.asUInt
-    // io.d2 := vectd2.asUInt
-
-    //also works
-    // io.d1 := Mux(io.sel === false.B, io.in, 0.U)
-    // io.d2 := Mux(io.sel === true.B, io.in, 0.U)
-
-
-    //also works
-    io.d1 := 0.U
-    io.d2 := 0.U
-    switch(io.sel) {
-        is(0.U) {
-            io.d1 := io.in
-        }
-        is(1.U) {
-            io.d2 := io.in
-        }
-    }
-
+   
 
 }
 
@@ -58,36 +29,84 @@ class deMux1to4(width: Int) extends Module { //1to4
         val d4         = Output(UInt(width.W))
     })
 
-    // val dm1 = Module(new deMux1to2(width))
-
-    // dm1.io.sel := io.s1
-    // dm1.io.in := io.in
-
-    // val dm2 = Module(new deMux1to2(width))
-    // val dm3 = Module(new deMux1to2(width))
-
-    // dm2.io.sel := io.s0
-    // dm3.io.sel := io.s0
-
-    // dm2.io.in := dm1.io.d1
-    // dm3.io.in := dm1.io.d2
-
-    // io.d1 := dm2.io.d1
-    // io.d2 := dm2.io.d2
-
-    // io.d3 := dm3.io.d1
-    // io.d4 := dm3.io.d2
+  
+}
 
 
-    //also works
-    // val sel = Cat(io.s1, io.s0)
-    // io.d1 := Mux(sel === 0.U, io.in, 0.U)
-    // io.d2 := Mux(sel === 1.U, io.in, 0.U)
-    // io.d3 := Mux(sel === 2.U, io.in, 0.U)
-    // io.d4 := Mux(sel === 3.U, io.in, 0.U)
+
+
+
+
+
+
+
+
+
+/*  
+mux2:1
+    val notSel = ~io.sel
+
+    val vectd1 = VecInit(Seq.fill(width)(0.U(1.W)))
+    val vectd2 = VecInit(Seq.fill(width)(0.U(1.W)))
+
+    for(i <- 0 until width){
+        vectd1(i) := notSel & io.in(i)
+        vectd2(i) := io.sel & io.in(i)
+    }
+
+    io.d1 := vectd1.asUInt
+    io.d2 := vectd2.asUInt
+
+    also works
+    io.d1 := Mux(io.sel === false.B, io.in, 0.U)
+    io.d2 := Mux(io.sel === true.B, io.in, 0.U)
+
+
+    also works
+    io.d1 := 0.U
+    io.d2 := 0.U
+    switch(io.sel) {
+        is(0.U) {
+            io.d1 := io.in
+        }
+        is(1.U) {
+            io.d2 := io.in
+        }
+    }
+*/
+
+/*  
+mux4:1
+    val dm1 = Module(new deMux1to2(width))
+
+    dm1.io.sel := io.s1
+    dm1.io.in := io.in
+
+    val dm2 = Module(new deMux1to2(width))
+    val dm3 = Module(new deMux1to2(width))
+
+    dm2.io.sel := io.s0
+    dm3.io.sel := io.s0
+
+    dm2.io.in := dm1.io.d1
+    dm3.io.in := dm1.io.d2
+
+    io.d1 := dm2.io.d1
+    io.d2 := dm2.io.d2
+
+    io.d3 := dm3.io.d1
+    io.d4 := dm3.io.d2
+
+
+    also works
+    val sel = Cat(io.s1, io.s0)
+    io.d1 := Mux(sel === 0.U, io.in, 0.U)
+    io.d2 := Mux(sel === 1.U, io.in, 0.U)
+    io.d3 := Mux(sel === 2.U, io.in, 0.U)
+    io.d4 := Mux(sel === 3.U, io.in, 0.U)
     
 
-    //also works
+    also works
     io.d1 := 0.U
     io.d2 := 0.U
     io.d3 := 0.U
@@ -99,4 +118,5 @@ class deMux1to4(width: Int) extends Module { //1to4
         is(2.U) { io.d3 := io.in }
         is(3.U) { io.d4 := io.in }
     }
-}
+
+*/

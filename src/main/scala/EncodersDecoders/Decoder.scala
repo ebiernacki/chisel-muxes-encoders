@@ -11,6 +11,25 @@ class Decoder() extends Module {
         val  output = Output(UInt(4.W))
     })
 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+Decoder:
     //have to set default
     io.output := 0.U
 
@@ -20,5 +39,5 @@ class Decoder() extends Module {
         is (2.U) { io.output := 4.U}
         is (3.U) { io.output := 8.U}
     }
-    
-}
+
+ */

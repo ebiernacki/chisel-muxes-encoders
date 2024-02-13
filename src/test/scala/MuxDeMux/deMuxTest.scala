@@ -42,7 +42,7 @@ class deMuxTest extends AnyFlatSpec with ChiselScalatestTester {
 
         //singular test thats generated in for loop below
         it should s"deMux1:2: width = $width, sel = $select, in = $in" in {
-            test(new deMux(width)) { dut =>
+            test(new deMux1to2(width)) { dut =>
             dut.io.sel.poke(select)
             
             dut.io.in.poke(inAsUint)

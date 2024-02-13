@@ -16,7 +16,7 @@ import scala.util.Random
 class MuxTest extends AnyFlatSpec with ChiselScalatestTester { 
 
 	//   "Mux2to1" should s"work for multibit" in {
-	//     test(new Mux(10)){ dut => 
+	//     test(new Mux2to1(10)){ dut => 
 	//         dut.io.sel.poke(1.U)//true, d2
 	//         println(dut.io.sel.peek())
 	//         dut.io.d1.poke(666.U)
@@ -37,7 +37,7 @@ class MuxTest extends AnyFlatSpec with ChiselScalatestTester {
 
 		//singular test thats generated in for loop below
 		it should s"Mux2:1: width = $width, sel = $select, in1 = $in1, in2 = $in2, expected = $expected" in {
-			test(new Mux(width)) { dut =>
+			test(new Mux2to1(width)) { dut =>
 				dut.io.sel.poke(select)
 				dut.io.d1.poke(in1asUint)
 				dut.io.d2.poke(in2asUint)

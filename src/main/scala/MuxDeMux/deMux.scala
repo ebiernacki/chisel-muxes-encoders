@@ -1,13 +1,13 @@
-
 package MuxDeMux
 
 import chisel3._
 import chisel3.util._
 
-class deMux(width: Int) extends Module { //1to2 
-    //for multibit result(and in) could use bundle of bools to represent bits????
+//Fill in the deMux1to2 and deMux1to4 to handle an input of width n bits and drive the correct output based on the select signals 
+//
+class deMux1to2(width: Int) extends Module { //1to2 
     val io = IO(new Bundle {
-        val sel        = Input(Bool())
+        val sel        = Input(UInt(1.W))
         val in         = Input(UInt(width.W))
         val d1         = Output(UInt(width.W))
         val d2         = Output(UInt(width.W))
@@ -34,7 +34,7 @@ class deMux(width: Int) extends Module { //1to2
     //also works
     io.d1 := 0.U
     io.d2 := 0.U
-    switch(io.sel.asUInt) {
+    switch(io.sel) {
         is(0.U) {
             io.d1 := io.in
         }
@@ -58,13 +58,13 @@ class deMux1to4(width: Int) extends Module { //1to4
         val d4         = Output(UInt(width.W))
     })
 
-    // val dm1 = Module(new deMux(width))
+    // val dm1 = Module(new deMux1to2(width))
 
     // dm1.io.sel := io.s1
     // dm1.io.in := io.in
 
-    // val dm2 = Module(new deMux(width))
-    // val dm3 = Module(new deMux(width))
+    // val dm2 = Module(new deMux1to2(width))
+    // val dm3 = Module(new deMux1to2(width))
 
     // dm2.io.sel := io.s0
     // dm3.io.sel := io.s0
@@ -94,19 +94,9 @@ class deMux1to4(width: Int) extends Module { //1to4
     io.d4 := 0.U
     val sel = Cat(io.s1, io.s0)
     switch(sel) {
-        is(0.U) {
-            io.d1 := io.in
-        }
-        is(1.U) {
-            io.d2 := io.in
-        }
-        is(2.U) {
-            io.d3 := io.in
-        }
-        is(3.U) {
-            io.d4 := io.in
-        }
+        is(0.U) { io.d1 := io.in }
+        is(1.U) { io.d2 := io.in }
+        is(2.U) { io.d3 := io.in }
+        is(3.U) { io.d4 := io.in }
     }
-
-
 }

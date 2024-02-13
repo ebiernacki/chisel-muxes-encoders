@@ -1,27 +1,24 @@
-/*
-*
-*/
-
-
-
 package MuxDeMux
 
 import chisel3._
 import chisel3.util._
 
-class Mux(width: Int) extends Module { //2:1
+//Fill in the Mux2to1 and Mux4to1 to handle any inputs of width n bits give a singular output based on the select signals 
+//
+
+class Mux2to1(n: Int) extends Module { //2:1
 	val io = IO(new Bundle {
 		val sel        = Input(UInt(1.W))
-		val d1         = Input(UInt(width.W))
-		val d2         = Input(UInt(width.W))
-		val out        = Output(UInt(width.W))
+		val d1         = Input(UInt(n.W))
+		val d2         = Input(UInt(n.W))
+		val out        = Output(UInt(n.W))
 	})
 
 	// val notSel = ~io.sel
 
-	// val vect = VecInit(Seq.fill(width)(0.U(1.W)))
+	// val vect = VecInit(Seq.fill(n)(0.U(1.W)))
 
-	// for(i <- 0 until width){
+	// for(i <- 0 until n){
 	// 	var t1 = io.d1(i) & notSel 
 	// 	var t2 = io.d2(i) & io.sel 
 	// 	var b1 = t1 | t2
@@ -44,19 +41,19 @@ class Mux(width: Int) extends Module { //2:1
 }
  
 
-class Mux4to1(width: Int) extends Module { //4:1
+class Mux4to1(n: Int) extends Module { //4:1
     val io = IO(new Bundle {
-        val s0         = Input(Bool())
-        val s1         = Input(Bool())
-        val d1         = Input(UInt(width.W))
-        val d2         = Input(UInt(width.W))
-        val d3         = Input(UInt(width.W))
-        val d4         = Input(UInt(width.W))
-        val out        = Output(UInt(width.W))
+        val s0         = Input(UInt(1.W))
+        val s1         = Input(UInt(1.W))
+        val d1         = Input(UInt(n.W))
+        val d2         = Input(UInt(n.W))
+        val d3         = Input(UInt(n.W))
+        val d4         = Input(UInt(n.W))
+        val out        = Output(UInt(n.W))
     })
 
-    // val m1 = Module(new Mux(width))
-    // val m2 = Module(new Mux(width))
+    // val m1 = Module(new Mux2to1(n))
+    // val m2 = Module(new Mux2to1(n))
 
     // m1.io.sel := io.s0
     // m2.io.sel := io.s0
@@ -67,7 +64,7 @@ class Mux4to1(width: Int) extends Module { //4:1
     // m2.io.d1 := io.d3
     // m2.io.d2 := io.d4
 
-    // val m3 = Module(new Mux(width))
+    // val m3 = Module(new Mux2to1(n))
     // m3.io.sel := io.s1
 
     // m3.io.d1 := m1.io.out
@@ -82,7 +79,7 @@ class Mux4to1(width: Int) extends Module { //4:1
 
 
     //this also works
-    val sel = Cat(io.s1.asUInt, io.s0.asUInt)
+    val sel = Cat(io.s1, io.s0)
 
     io.out := io.d1
     switch (sel) {
